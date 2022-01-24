@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<MoneoSettings>
+	<MoneoEnv Color="True" Color-Bold="15" Color-Code="13" Color-Error="12" Color-Input="11" Color-Link="11" Color-Prompt="15" Color-Text="7" Color-Warning="14" HelpBanners="True" HelpBannerChar="-" Prompt="Moneo" Text-Height="24" Text-Width="79"/>
+	<ModuleACL>
+		<ACE principal="system.system" action="allow"/>
+		<ACE principal="filesys" action="allow"/>
+	</ModuleACL>
+</MoneoSettings>

@@ -1,0 +1,1174 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<LetoScriptHelp>
+	<version moneo="Moneo build 27" helpsys="1.0" date="2006-10-01" author="David Frauzel" email="dragon@weathersong.net" contrib="." notes=""/>
+	<index name="/" header="Here&#39;s a list of help topics. To read a topic, simply type its name.">
+		<link name="introduction" desc="Basic information" node="/Introduction" aliases="intro"/>
+		<link name="about" desc="Version and author information" node="/About"/>
+		<link name="commands" desc="Useful command mode utilities" node="/Info/Command" aliases="cmd"/>
+		<link name="describe" desc="Explanations of modules and functions" node="/Descriptions" aliases="desc explain"/>
+		<link name="documentation" aliases="lsdoc doc" node="Documentation" desc="The LetoScript language; &#39;lsdoc&#39; or &#39;doc&#39; for short"/>
+		<link name="example" desc="Simple examples of functions" node="/Examples"/>
+		<link name="info" desc="Informational topics" node="/Info" aliases="help"/>
+		<link name="whatsnew" desc="What&#39;s new in recent builds" node="/WhatsNew" aliases="new"/>
+	</index>
+	<section name="Introduction" title="INTRODUCTION">
+		<index header="Choose a topic from the list below. E.g., &#39;intro moneo&#39;">
+			<link name="start" desc="Start here: &#39;intro start&#39;" node="Start"/>
+			<link name="letoscript" desc="About the LetoScript language" node="LetoScript"/>
+			<link name="moneo" desc="Using Moneo" node="Moneo"/>
+			<link name="nwnx-leto" desc="The NWNX plugin for running LetoScript from NWScript" node="NWNX-Leto"/>
+		</index>
+		<article name="Start" title="Introduction: Getting started">[[b]]Hail![[/b]]
+
+The helpsys is designed to get you up and running with LetoScript using short, non-technical articles and descriptions of all the major functions, including examples of many common tasks. You will learn best from the helpsys if you already have experience with scripting / programming.
+
+Although LetoScript&#39;s syntax has certain differences from NWScript, it makes a good background so that you can see how LetoScript improves upon NWScript: granting you new feats and supernatural abilities NWScript cannot hope to rival. By adding the [[b]]Champion of LetoScript[[/b]] prestige class to your strong [[b]]NWScript Guru[[/b]] foundation, you will become a peerless world builder and admin. No nagging henchmen required!
+
+To warm up, read: &#60;[intro letoscript]&#62;, &#60;[intro moneo]&#62;, &#60;[info shell]&#62;, and as much as you need of &#60;[lsdoc]&#62;.
+
+Then jump right in, with &#60;[desc]&#62; and &#60;[example]&#62;. Adventure awaits!
+</article>
+		<article name="LetoScript" title="Introduction: LetoScript">Originally developed as a simple means for looping over Fields in a GFF file, and gradually extended with more generic GFF editing capabilities, ERF support and multiple other file formats, and eventually including even SQL support and a complete syntax overhaul based on the Perl language; LetoScript has a history of nearly 3 years and has been used in countless Neverwinter Nights persistent worlds. LetoScript is maintained by David Frauzel (see &#60;[about]&#62;).
+
+LetoScript can be a back-end tool to enrich game experience, can be used for batch jobs to tweak massive modules or player vaults in ways that would take days by hand, and as a way to write quick and dirty hacks when no other (elegant) solutions is present.
+
+The general function of LetoScript is to edit files. It CAN NOT edit a character logged on to a module (single or multiplayer) or edit the running module itself; in a meaningful way. Of course there are ways around this (such as booting the character), but these workarounds involve different approaches to the problem, not forcing LetoScript into doing something it can&#39;t.
+
+See also: &#60;[intro moneo]&#62;, &#60;[intro nwnx-leto]&#62;, &#60;[lsdoc 101]&#62;
+</article>
+		<article name="Moneo" title="Introduction: Moneo">&#34;LetoScript&#34; is a language, and for a language to work you need a compiler. Moneo is the command-line, interactive compiler for LetoScript. NWNX-Leto is a compiler designed specifically for NWNX and is controlled wholly by the NWScript of a running server. Alia is a visual GFF/ERF editor that includes a LetoScript &#34;shell&#34; similar to Moneo.
+
+Moneo can run any script NWNX-Leto can, and vice versa. Since debugging a script in NWNX-Leto is time-consuming and complicated, Moneo is a superlative means for script design and testing. It&#39;s also the best way to learn LetoScript, thanks to the integrated help system and the line-at-a-time interface.
+
+To learn more about LetoScript, read through &#60;[lsdoc]&#62; and browse through the descriptions of the modules and methods presented with &#60;[describe]&#62;.
+
+See also: &#60;[commands]&#62;, &#60;[info command-mode]&#62;, &#60;[list]&#62;, &#60;[define]&#62;, &#60;[example]&#62;
+</article>
+		<article name="NWNX-Leto" title="Introduction: NWNX-Leto">The NWNX-Leto plugin for NWNX makes it possible to run LetoScript from NWScript. The idea is simple: LetoScript has a plethora of functions for editing many different file formats, especially GFF. NWScript has... none. BioWare has made it very clear that, for anti-hacking reasons, NWScript will never have any kind of generic file-editing capabilities, though in recent patches it has gained more and more &#34;high level&#34; GFF editing abilities.
+
+NWNX-Leto is made for:
+  - Exacting control over data in ERF, GFF, TLK, 2DA, FPT files
+  - Editing characters in ways NWScript cannot (e.g. classes, spells, feats)
+  - A more &#34;generic&#34; (utility-oriented) scripting language than NWScript
+
+NWNX-Leto is NOT made for:
+  - Editing characters in live memory
+
+See also: &#60;[info gff]&#62;, &#60;[info nwnx]&#62;
+</article>
+	</section>
+	<article name="About" title="About">This helpfile was written by [[author]][[contrib]]
+
+Help was most recently updated on [[date]]. The syntax used is for [[moneo]]. You can reach the author by e-mail at [[email]], but always try the forums first: http://weathersong.infopop.cc
+</article>
+	<section name="Descriptions" title="DESCRIPTIONS">
+		<index header="These are all the modules (collections of functions) in LetoScript, in order of precedence (see &#39;lsdoc precedence&#39;):" footer="\nDetails available, e.g. &#39;describe gff&#39;\n">
+			<link name="gff" desc="Manipulate Fields in GFF files" node="gff"/>
+			<link name="erf" desc="Manipulate resources in ERF files" node="erf"/>
+			<link name="bic" desc="High level PW-sysadmin functions" node="bic"/>
+			<link name="tlk" desc="Manipulate stringrefs TLK files" node="tlk"/>
+			<link name="meta" desc="Manipulate data in 2DA files" node="meta"/>
+			<link name="fpt" desc="Manipulate GFF data sealed in FPT files" node="fpt"/>
+			<link name="filesys" desc="Low level file system functions" node="filesys"/>
+			<link name="system" desc="Core language functions" node="system"/>
+			<link name="math" desc="Algebra and trig functions" node="math"/>
+			<link name="sql" node="sql" desc="SQL database functions"/>
+			<link name="gff.add" node="gff.add" aliases="add" visible="false"/>
+			<link name="gff.clear" node="gff.clear" aliases="clear" visible="false"/>
+			<link name="gff.delete" node="gff.delete" aliases="delete" visible="false"/>
+			<link name="gff.find" node="gff.find" aliases="find" visible="false"/>
+			<link name="gff.replace" node="gff.replace" aliases="replace" visible="false"/>
+			<link name="erf.export" node="erf.export" aliases="export" visible="false"/>
+			<link name="erf.import" node="erf.import" aliases="import" visible="false"/>
+			<link name="erf.list" node="erf.list" aliases="list" visible="false"/>
+			<link name="erf.remove" node="erf.remove" aliases="remove" visible="false"/>
+			<link name="bic.findbicbytag" node="bic.findbicbytag" aliases="findbicbytag" visible="false"/>
+			<link name="bic.findnewestbic" node="bic.findnewestbic" aliases="findnewestbic" visible="false"/>
+			<link name="bic.vault" node="bic.vault" aliases="vault" visible="false"/>
+			<link name="tlk.dialog" node="tlk.dialog" aliases="dialog" visible="false"/>
+			<link name="tlk.addstrref" node="tlk.addstrref" aliases="addstrref" visible="false"/>
+			<link name="tlk.findstrref" node="tlk.findstrref" aliases="findstrref" visible="false"/>
+			<link name="tlk.getstrref" node="tlk.getstrref" aliases="getstrref" visible="false"/>
+			<link name="tlk.getstrrefflags" node="tlk.getstrrefflags" aliases="getstrrefflags" visible="false"/>
+			<link name="tlk.setstrref" node="tlk.setstrref" aliases="setstrref" visible="false"/>
+			<link name="tlk.setstrrefflags" node="tlk.setstrrefflags" aliases="setstrrefflags" visible="false"/>
+			<link name="meta.locate" node="meta.locate" aliases="locate" visible="false"/>
+			<link name="meta.lookup" node="meta.lookup" aliases="lookup" visible="false"/>
+			<link name="meta.meta" node="meta.meta" visible="false"/>
+			<link name="fpt.extract" node="fpt.extract" aliases="extract" visible="false"/>
+			<link name="fpt.inject" node="fpt.inject" aliases="inject" visible="false"/>
+			<link name="filesys.filecopy" node="filesys.filecopy" aliases="filecopy" visible="false"/>
+			<link name="filesys.filedelete" node="filesys.filedelete" aliases="filedelete" visible="false"/>
+			<link name="filesys.directoryexists" node="filesys.directoryexists" aliases="directoryexists" visible="false"/>
+			<link name="filesys.fileexists" node="filesys.fileexists" aliases="fileexists" visible="false"/>
+			<link name="filesys.fileinfo" node="filesys.fileinfo" aliases="fileinfo" visible="false"/>
+			<link name="filesys.filemove" node="filesys.filemove" aliases="filemove" visible="false"/>
+			<link name="filesys.filerename" node="filesys.filerename" aliases="filerename" visible="false"/>
+			<link name="filesys.forcedirectories" node="filesys.forcedirectories" aliases="forcedirectories" visible="false"/>
+			<link name="system.caller" node="system.caller" aliases="caller" visible="false"/>
+			<link name="system.chr" node="system.chr" aliases="chr" visible="false"/>
+			<link name="system.close" node="system.close" aliases="close" visible="false"/>
+			<link name="system.defined" node="system.defined" aliases="defined" visible="false"/>
+			<link name="system.delete" node="system.delete" visible="false"/>
+			<link name="system.die" node="system.die" aliases="die" visible="false"/>
+			<link name="system.exit" node="system.exit" aliases="exit" visible="false"/>
+			<link name="system.greedy" node="system.greedy" aliases="greedy" visible="false"/>
+			<link name="system.isnum" node="system.isnum" aliases="isnum" visible="false"/>
+			<link name="system.keys" node="system.keys" aliases="keys" visible="false"/>
+			<link name="system.lc" node="system.lc" aliases="lc" visible="false"/>
+			<link name="system.length" node="system.length" aliases="length" visible="false"/>
+			<link name="system.my" node="system.my" aliases="my" visible="false"/>
+			<link name="system.ord" node="system.ord" aliases="ord" visible="false"/>
+			<link name="system.pop" node="system.pop" aliases="pop" visible="false"/>
+			<link name="system.print" node="system.print" aliases="print" visible="false"/>
+			<link name="system.printf" node="system.printf" aliases="printf" visible="false"/>
+			<link name="system.printlist" node="system.printlist" aliases="printlist system.pl pl" visible="false"/>
+			<link name="system.push" node="system.push" aliases="push" visible="false"/>
+			<link name="system.rand" node="system.rand" aliases="rand" visible="false"/>
+			<link name="system.return" node="system.return" aliases="return" visible="false"/>
+			<link name="system.shift" node="system.shift" aliases="shift" visible="false"/>
+			<link name="system.sleep" node="system.sleep" aliases="sleep" visible="false"/>
+			<link name="system.subst" node="system.subst" aliases="subst system.s s" visible="false"/>
+			<link name="system.substr" node="system.substr" aliases="substr" visible="false"/>
+			<link name="system.system" node="system.system" visible="false"/>
+			<link name="system.time" node="system.time" aliases="time" visible="false"/>
+			<link name="system.uc" node="system.uc" aliases="uc" visible="false"/>
+			<link name="system.undef" node="system.undef" aliases="undef" visible="false"/>
+			<link name="system.unshift" desc="" node="system.unshift" aliases="unshift" visible="false"/>
+			<link name="system.values" node="system.values" aliases="values" visible="false"/>
+			<link name="system.var" node="system.var" aliases="var" visible="false"/>
+			<link name="system.warn" node="system.warn" aliases="warn" visible="false"/>
+			<link name="math.abs" node="math.abs" aliases="abs" visible="false"/>
+			<link name="math.ceil" node="math.ceil" aliases="ceil" visible="false"/>
+			<link name="math.divmod" node="math.divmod" aliases="divmod" visible="false"/>
+			<link name="math.exp" node="math.exp" aliases="exp" visible="false"/>
+			<link name="math.floor" node="math.floor" aliases="floor" visible="false"/>
+			<link name="math.frac" node="math.frac" aliases="frac" visible="false"/>
+			<link name="math.frexp" node="math.frexp" aliases="frexp" visible="false"/>
+			<link name="math.int" node="math.int" aliases="int" visible="false"/>
+			<link name="math.iszero" node="math.iszero" aliases="iszero" visible="false"/>
+			<link name="math.ldexp" node="math.ldexp" aliases="ldexp" visible="false"/>
+			<link name="math.ln" node="math.ln" aliases="ln" visible="false"/>
+			<link name="math.lnxp1" node="math.lnxp1" aliases="lnxp1" visible="false"/>
+			<link name="math.log2" node="math.log2" aliases="log2" visible="false"/>
+			<link name="math.log10" node="math.log10" aliases="log10" visible="false"/>
+			<link name="math.logn" node="math.logn" aliases="logn" visible="false"/>
+			<link name="math.max" node="math.max" aliases="max" visible="false"/>
+			<link name="math.min" node="math.min" aliases="min" visible="false"/>
+			<link name="math.muldiv" node="math.muldiv" aliases="muldiv" visible="false"/>
+			<link name="math.poly" node="math.poly" aliases="poly" visible="false"/>
+			<link name="math.round" node="math.round" aliases="round" visible="false"/>
+			<link name="math.roundto" node="math.roundto" aliases="roundto" visible="false"/>
+			<link name="math.samevalue" node="math.samevalue" aliases="samevalue" visible="false"/>
+			<link name="math.sign" node="math.sign" aliases="sign" visible="false"/>
+			<link name="math.simpleroundto" node="math.simpleroundto" aliases="simpleroundto" visible="false"/>
+			<link name="math.sqr" node="math.sqr" aliases="sqr" visible="false"/>
+			<link name="math.sqrt" node="math.sqrt" aliases="sqrt" visible="false"/>
+			<link name="math.acos" node="math.acos" aliases="acos" visible="false"/>
+			<link name="math.acosh" node="math.acosh" aliases="acosh" visible="false"/>
+			<link name="math.acot" node="math.acot" visible="false"/>
+			<link name="math.acoth" node="math.acoth" aliases="acoth" visible="false"/>
+			<link name="math.acsc" node="math.acsc" aliases="acsc" visible="false"/>
+			<link name="math.acsch" node="math.acsch" aliases="acsch" visible="false"/>
+			<link name="math.asec" node="math.asec" aliases="asec" visible="false"/>
+			<link name="math.asech" node="math.asech" aliases="asech" visible="false"/>
+			<link name="math.asin" node="math.asin" aliases="asin" visible="false"/>
+			<link name="math.asinh" node="math.asinh" aliases="asinh" visible="false"/>
+			<link name="math.atan" node="math.atan" aliases="atan" visible="false"/>
+			<link name="math.atan2" node="math.atan2" aliases="atan2" visible="false"/>
+			<link name="math.atanh" node="math.atanh" aliases="atanh" visible="false"/>
+			<link name="math.cosin" node="math.cosin" aliases="cosin math.cos cos" visible="false"/>
+			<link name="math.cosh" node="math.cosh" aliases="cosh" visible="false"/>
+			<link name="math.cotan" node="math.cotan" aliases="cotan math.cot cot" visible="false"/>
+			<link name="math.coth" node="math.coth" aliases="coth" visible="false"/>
+			<link name="math.cosecant" node="math.cosecant" aliases="cosecant math.csc csc" visible="false"/>
+			<link name="math.csch" node="math.csch" aliases="csch" visible="false"/>
+			<link name="math.hypot" node="math.hypot" aliases="hypot" visible="false"/>
+			<link name="math.secant" node="math.secant" aliases="secant math.sec sec" visible="false"/>
+			<link name="math.sech" node="math.sech" aliases="sech" visible="false"/>
+			<link name="math.sin" node="math.sin" aliases="sin" visible="false"/>
+			<link name="math.sincos" node="math.sincos" aliases="sincos" visible="false"/>
+			<link name="math.sinh" node="math.sinh" aliases="sinh" visible="false"/>
+			<link name="math.tan" node="math.tan" aliases="tan" visible="false"/>
+			<link name="math.tanh" node="math.tanh" aliases="tanh" visible="false"/>
+			<link name="sql.bindblob" node="sql.bindblob" aliases="bindblob" visible="false"/>
+			<link name="sql.bof" node="sql.bof" aliases="bof" visible="false"/>
+			<link name="sql.connect" node="sql.connect" aliases="connect" visible="false"/>
+			<link name="sql.disconnect" node="sql.disconnect" aliases="disconnect" visible="false"/>
+			<link name="sql.eof" node="sql.eof" aliases="eof" visible="false"/>
+			<link name="sql.exec" node="sql.exec" aliases="exec" visible="false"/>
+			<link name="sql.field" node="sql.field" aliases="field" visible="false"/>
+			<link name="sql.fieldnames" node="sql.fieldnames" aliases="fieldnames" visible="false"/>
+			<link name="sql.fields" node="sql.fields" aliases="fields" visible="false"/>
+			<link name="sql.first" node="sql.first" aliases="" visible="false"/>
+			<link name="sql.insertid" node="sql.insertid" aliases="insertid" visible="false"/>
+			<link name="sql.last" node="sql.last" aliases="" visible="false"/>
+			<link name="sql.next" node="sql.next" visible="false"/>
+			<link name="sql.params" node="sql.params" aliases="params" visible="false"/>
+			<link name="sql.prior" node="sql.prior" visible="false"/>
+			<link name="sql.query" node="sql.query" aliases="query" visible="false"/>
+			<link name="sql.recordcount" node="sql.recordcount" aliases="recordcount" visible="false"/>
+			<link name="sql.retrieve" node="sql.retrieve" aliases="retrieve" visible="false"/>
+			<link name="sql.rowsaffected" node="sql.rowsaffected" aliases="rowsaffected" visible="false"/>
+			<link name="sql.store" node="sql.store" aliases="store" visible="false"/>
+		</index>
+		<article name="gff" title="GFF module">Low-level functions for working directly with Fields in a GFF:
+  &#60;[gff.add]&#62;               Create a new Field
+  &#60;[gff.clear]&#62;             Remove all children of a List or Struct
+  &#60;[gff.delete]&#62;            Delete a Field
+  &#60;[gff.find]&#62;              Find Field(s) based on numerous criteria
+  &#60;[gff.replace]&#62;           Like find, can then set value or delete
+
+This module also has constants for all of the Field types, see {{list constants in gff}}.
+
+See also: {{lsdoc 101 files}}, {{info gff}}, {{info fields}}
+</article>
+		<article name="erf" title="ERF module">Low-level functions for working directly with resources in an ERF:
+  &#60;[erf.export]&#62;            Save a resource as a file
+  &#60;[erf.import]&#62;            Add a new resource to the ERF
+  &#60;[erf.list]&#62;              List resources in the ERF
+  &#60;[erf.remove]&#62;            Remove resource(s) from the ERF
+
+See also: {{lsdoc 101 files}}, {{info erf}}
+</article>
+		<article name="bic" title="BIC module">Higher-level functions designed to aid PW admins, who must deal extensively with the BIC files of players:
+  &#60;[bic.findbicbytag]&#62;      Locate a BIC with the given Tag
+  &#60;[bic.findnewestbic]&#62;     Find the most recently modified BIC in a folder
+  &#60;[bic.vault]&#62;             List all BIC files in a folder
+
+This library is relatively new, and should gain more features in the future, based on community feedback.
+
+See also: {{intro nwnx-leto}}, {{info nwnx}}
+</article>
+		<article name="tlk" title="TLK module">Low-level functions for working directly with StringRefs in a TLK:
+  tlk.dialog            Initialize the TLK module (required)
+  tlk.addstrref         Create a new StrRef
+  tlk.findstrref        Find StrRef(s) by value
+  tlk.getstrref         Get the value of a StrRef by index
+  tlk.getstrrrefflags   Get the flags of a StrRef by index
+  tlk.setstrref         Set the value of a StrRef by index
+  tlk.setstrrefflags    Set the flags of a StrRef by index
+
+This module also has constants for StrRef flags, see {{list constants in tlk}}.
+
+Documentation on TLK is at:
+  http://nwn.bioware.com/developers/
+</article>
+		<article name="meta" title="META (2da) module">Low-level functions for working directly with data in a 2DA:
+  meta.locate           Find row(s) with a given column value
+  meta.lookup           Get the value at a specific row / col
+  meta.meta             Initialize the META module (required)
+
+Documentation on 2DA is at:
+  http://nwn.bioware.com/developers/
+</article>
+		<article name="fpt" title="FPT module">Coordinates data-transit via FPT (Bioware database file):
+  fpt.extract           Take a GFF out of an FPT
+  fpt.inject            Overwrite GFF data in an FPT
+
+See also: {{info fpt}}
+</article>
+		<article name="filesys" title="FILESYS module">Low-level file-system functions:
+  filesys.filecopy           Copy a file
+  filesys.filedelete         Delete a file
+  filesys.directoryexists    Verify a path exists
+  filesys.fileexists         Verify a file exists
+  filesys.fileinfo           Get information about a file *
+  filesys.filemove           Move (rename) a file
+  filesys.filerename         Synonym for filemove
+  filesys.forcedirectories   Ensure a path exists *
+
+This module is DISABLED by default, preventing the use of its potentially very dangerous functions. See {{enable}}.
+
+* - New in build 27
+</article>
+		<article name="system" title="SYSTEM module">The primary language-level functions of LetoScript are in the module named {{system}}. To see the complete list of them, use {{list methods in system}}. Full-name qualification is usually unneeded, so {{print}} works just as well as {{system.print}}. The {{delete}} function, however, has the same name as {{gff.delete}}, and because the {{gff}} module has higher precedence, using {{system.delete}} requires full-name qualification.
+
+The {{system.system}} function does not require full-name qualification, either - except in this documentation (e.g. {{desc system.system}}).
+</article>
+		<article name="math" title="MATH module">A large list of mathematical functions are available in the module named {{math}}, including all major trigonometric functions. For a complete list of them, use {{list methods in math}}. The {{pi}} constant is also in this library, set to 3.14159265358979, the same value as {{4 * atan2(1, 1)}}.
+</article>
+		<article name="sql" title="SQL module">The {{sql}} module provides support for working with various flavors of an SQL server, abstracting most of the differences between those flavors so that you may focus on [[b]]why[[/b]] you need a database, not [[b]]how[[/b]] you&#39;re supposed to implement it.
+
+In the current build of LetoScript, this module has not yet been refactored, and is unavailable. Its documentation is also still under construction.
+</article>
+		<article name="gff.add" title="gff.add">{{gff.add $name, $value = undef, $type = undef;
+  /copyfrom, $lang, $setifexists
+}}
+Creates a new Field in an open GFF.
+</article>
+		<article name="gff.clear" title="gff.clear">Under construction.
+</article>
+		<article name="gff.delete" title="gff.delete">Under construction.
+</article>
+		<article name="gff.find" title="gff.find">Under construction.
+</article>
+		<article name="gff.replace" title="gff.replace">Under construction.
+</article>
+	</section>
+	<section name="Documentation" title="DOCUMENTATION">
+		<index header="All about LetoScript, in a nutshell. Start with the basics: &#39;lsdoc 101&#39;">
+			<link name="101" desc="LetoScript 101: variables, conditions, loops, files..." node="101" aliases=""/>
+			<link name="attributes" node="Attributes" aliases="attribs" desc="Variable metadata"/>
+			<link name="hashes" desc="Associative arrays" node="Hashes"/>
+			<link name="precedence" desc="How LetoScript resolves ambiguity" node="Precedence"/>
+			<link name="strings" node="Strings" desc="How to define, combine, and output text"/>
+			<link name="ternary" desc="The ternary operators ? : are a shortcut for if-else" node="Ternary"/>
+		</index>
+		<section name="101" title="LETOSCRIPT 101">
+			<index header="Read the articles here in the order listed. Start with &#39;lsdoc 101 syntax&#39;:">
+				<link name="syntax" desc="Based on Perl, but a lot like NWScript" node="Syntax"/>
+				<link name="files" desc="This is what LetoScript does: it edits files" node="Files"/>
+				<link name="fields" desc="How LetoScript edits GFF data" node="Fields"/>
+				<link name="variables" desc="Scalars and lists" node="Variables" aliases="vars"/>
+				<link name="quotes" desc="Quotation marks, trickier than you may expect!" node="Quotes"/>
+				<link name="comments" desc="What language would be complete without comments?" node="Comments"/>
+				<link name="logic" desc="if-else, and testing for equality" node="Logic"/>
+				<link name="flow" desc="Loops: more than just for (i=0; i&#60;10; i++)" node="Flow"/>
+				<link name="subroutines" node="Subroutines" aliases="subs" desc="Make your code easier to read, maintain"/>
+				<link name="functions" desc="Everything else LetoScript can do" node="Functions"/>
+			</index>
+			<article name="Syntax" title="LetoScript 101: Syntax">The LetoScript language is a unique language. It is most like Perl, which itself is related to C. Since NWScript is also related to C, LetoScript and NWScript are like cousins twice-removed. The really basic syntax in LetoScript will probably look very familiar to you.
+
+Things like variables and loops start to look a little different: you&#39;ll see {{$}} and {{@}} in front of variables, and since loops can do things like iterate over the Fields in a List, or the resources in an ERF, there are many new ways to write a {{for}} loop, too.
+
+The function syntax for LetoScript is more relaxed than in NWScript, where parentheses are always required, and arguments must be given in order, but the differences won&#39;t feel alien for long; and since learning all of the functions in LetoScript is what will truly take the most time and be most worthwhile, the bigger differences elsewhere won&#39;t hinder you much. Some of the more technical syntax (like arrays and hashes) you may never even need or use at all.
+
+Next: &#60;[lsdoc 101 files]&#62;
+</article>
+			<article name="Files" title="LetoScript 101: Files">[[p]]
+[[b]]-- Opening Files[[/b]]
+
+LetoScript opens and edits many different kinds of file: GFF, ERF, TLK, 2DA, and FPT. The GFF and ERF formats are used with many different extensions: GFF can be BIC, GIT, ARE, FAC, IFO, UTI, and many more. ERF can be MOD, HAK, NWM, and SAV.
+
+Opening a file in LetoScript is easy. A type of variable called a handle is used. Handles are distinguished with a {{%}}. (More about variables in a bit.) This statement opens a GFF named bob.bic:
+
+  {{%bob = &#39;bob.bic&#39;;}}
+
+Simple, right? It&#39;s just like assigning a value to a string. LetoScript sees that you&#39;re using a handle, and understands that you want to use it to open a file. But wait: how can you tell the file loaded successfully?
+[[page]]
+
+[[b]]-- or die $![[/b]]
+
+It&#39;s very common to see the apocryphal phrase {{or die $!}} tacked onto the end of a statement in LetoScript. This tells LetoScript to first try whatever is to the left of {{or}}, but if it fails, then {{die}} (stop running the script) and output the value of {{$!}}, which is a special variable containing the most recent error code generated. Consider:
+
+  {{%bob = &#39;bob.bic&#39; or die $!;}}
+
+To the left of {{or}} is the standard method for opening a file. If that fails (if the file could not be loaded), then the script {{die}}s, and you&#39;re told why the file could not be opened - thanks to {{$!}} getting a hint from the code that tried to open bob.bic.
+
+If you don&#39;t check, LetoScript won&#39;t complain or stop running - but {{%bob}} may not be valid (if the file couldn&#39;t load), so the rest of your script may break! For that reason, dying is always a good practice. And there&#39;s no XP penalty.
+[[page]]
+
+[[b]]-- Saving Files[[/b]]
+
+After you&#39;ve made changes to a file in LetoScript, you can save it almost the same way you opened it:
+
+  {{%bob = &#39;&#62;&#39;;}}
+
+The {{&#62;}} symbol tells LetoScript you&#39;re saving, instead of opening. You can specify a new file name after the aligator:
+
+  {{%bob = &#39;&#62;edited_bob.bic&#39;;}}
+
+If you don&#39;t save the file (and just close it), any changes made are lost.
+[[page]]
+
+[[b]]-- Closing Files[[/b]]
+
+There are a couple different ways to close a file. The simplest one is:
+
+  {{%bob = &#39;&#39;;}}
+
+There&#39;s also the {{close}} function, if you prefer something that reads more like English:
+
+  {{close %bob;}}
+
+As you gain insight into the arcane lore of LetoScript, you will discover the power of {{undef}}. It can also be used to close files, since making a handle undefined necessarily closes its contents:
+{{
+  %bob = undef;
+  undef %bob;
+}}
+All of them do the same thing.
+
+Next: &#60;[lsdoc 101 fields]&#62;
+</article>
+			<article name="Fields" title="LetoScript 101: Fields">[[p]]
+[[b]]-- Fields[[/b]]
+
+Once you&#39;ve got a file open, you probably want to look at or change some Fields. If you need a primer on GFF and Fields, go to:
+  http://nwn.bioware.com/developers/
+And see also: &#60;[info gff]&#62;, &#60;[info fields]&#62;
+
+Just as files have a unique symbol in LetoScript, so too do Fields: the (forward) slash. This means Fields actually look a lot like Linux or HTML file paths, as seen here: 
+{{
+  %bob = &#39;bob.bic&#39; or die $!;
+  print /firstname;
+  print /lvlstatlist/[0]/lvlstathitdie;
+  /LastName = &#39;the Minogon&#39;;
+  /LvlStatList/[0]/LvlStatHitDie = 12;
+}}
+Notice how Fields can be lowercase or &#34;camelcase&#34;. LetoScript is case-insensitive, use whatever looks better to you.
+[[page]]
+
+[[b]]-- Field syntax[[/b]]
+
+The LvlStatList example may be a little confusing if you&#39;re still unaccustomed to GFF structure. The [0] in the path indicates Struct 0 (the first Struct) in the List named LvlStatList. Likewise, inside that Struct is the Field named LvlStatHitDie (among others). Here are the most important parts of the Field syntax in LetoScript:
+{{
+  /@                    # The root (Struct).
+  /[0]                  # The first Field in the file.
+  /LvlStatList/[-1]     # The last Struct in LvlStatList.
+  /LvlStatList/[_]      # Same thing.
+  /$foo                 # Field named by the value of $foo.
+  /{&#39;Placeables List&#39;}  # A Field name with spaces in it.
+
+  # Print a list (printlist) of every single Field&#39;s value in the file:
+  pl /@;
+
+  # Print a list of every single Field&#39;s name and value in the file:
+  pl %_;
+}}
+Next: &#60;[lsdoc 101 variables]&#62;
+</article>
+			<article name="Variables" title="LetoScript 101: Variables">[[p]]
+[[b]]-- Variables[[/b]]
+
+We&#39;ve already looked at files and Fields, which are actually variables signed with {{%}} and {{/}}. The two other types of variables are {{$}} and {{@}}, which are scalars and lists. Scalars are like the int and string types of NWScript rolled into one. Any scalar can be either, and can even be converted back and forth. So you don&#39;t need to declare its type, just assign it a value: 
+{{
+  $text = &#39;Hello, world.&#39;;
+  print $text;
+  $number = 3;
+  print $number + $number;
+
+  $bob = &#39;bob.bic&#39;;
+  %bob = $bob or die $!;
+  $name = /firstname;
+  print &#34;My name is $name.&#34;;
+}}[[page]]
+
+[[b]]-- Lists[[/b]]
+
+The other type of variable is a list, signed with {{@}}. Don&#39;t confuse lists with Lists. A list variable is a type of variable with multiple values. A List Field is a type of Field containing Structs. List variables are constructed using parentheses, and accessed using square brackets: 
+{{
+  @colors = (&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;);
+  print @colors.count;  # 3
+  print $colors[0];     # red
+  print $colors[1];     # green
+  print $colors[2];     # blue
+  print $colors[3];     # undefined value (warning)
+  $colors[3] = &#39;white&#39;; # add a new member
+  print @colors;        # redgreenbluewhite
+  print &#34;@colors&#34;;      # red green blue white
+  @colors = ();         # clear the list
+}}
+Note the importance of {{$}} when accessing a member of a list. The value you&#39;re fetching is actually a scalar, hence the use of {{$}}. {{@foo[0]}} is not the same as {{$foo[0]}}. See also: &#60;[lsdoc hashes]&#62;, &#60;[lsdoc attributes]&#62;
+[[page]]
+
+[[b]]-- Special variables[[/b]]
+
+LetoScript has a number of special variables. You don&#39;t need to know all of them, they just make life easier: 
+{{
+  %_    File: the current file handle.
+  %~    File: the current resource in a for %ERF loop.
+  /@    Field: the root Struct.
+  /~    Field: the current context in a for /LIST loop.
+  $_    Scalar: the &#34;understood&#34; value (varies greatly by context).
+  $!    Scalar: most recent error.
+  @_    List: the arguments passed to a subroutine.
+}}
+Next: &#60;[lsdoc 101 quotes]&#62;
+</article>
+			<article name="Quotes" title="LetoScript 101: Quotes">This is a common sticking point, so it&#39;s worth covering right here at the start. In NWScript, there&#39;s just one way to quote strings: double-quotes. In LetoScript, we have single quotes, double quotes, and even functions that act likes single quotes and double quotes, in case you can&#39;t or don&#39;t want to use the symbols themselves.
+
+[[b]]Single quotes[[/b]] are the simplest kind of quote, and should be your default choice when in doubt. Single quotes don&#39;t do anything special. They give you exactly the literal text inside of them. If you need a single quote inside a single-quoted string, use {{\&#39;}}. The only time single quotes are a bad idea is in NWNX-Leto, where you should use {{q}} instead. 
+
+[[b]]Double quotes[[/b]] will interpolate their contents, which means variables are expanded, and escape sequences like {{[[/n]]}} are recognized. Interpolation is convenient when you have big composite strings, but can be a hassle if your string has any \ or / in it, because they both get interpolated.
+
+The {{q}} and {{qq}} functions simulate single-quotes and double-quotes, respectively. Both are very important functions to understand for NWNX-Leto, but for now, just use &#39;&#39; and &#34;&#34; while you learn in Moneo.
+[[page]]
+
+[[b]]Examples:[[/b]]
+{{
+  # No interpolation:
+  print &#39;Today\&#39;s $10 word is: &#34;interpolation&#34;.&#39;;
+
+  # \ is interpolated for special characters.
+  # [[/n]] is newline, \t is tab, \&#34; is a double-quote,
+  # \\ is the backslash, \/ is the slash:
+  print &#34;Two lines[[/n]]of text.&#34;;
+  print &#34;Some \&#34;double quotes\&#34;\tand\t\\ slashes \/[[/n]]&#34;;
+
+  # / is interpolated for Fields.
+  print &#34;My name is /firstname /lastname.[[/n]]&#34;;
+
+  # $ is interpolated for scalar variables.
+  $vaultpath = &#39;C:\NWN\servervault&#39;;
+  %bic = &#34;$vaultpath\\$playername\\$file&#34; or die $!;
+}}
+Lots more information at &#60;[lsdoc strings]&#62;.
+
+Next: &#60;[lsdoc 101 comments]&#62;
+</article>
+			<article name="Comments" title="LetoScript 101: Comments">You should already be very familiar with comments if you&#39;ve used NWScript. NWScript has two types of comment: {{//}} for a single line, and {{/* */}} for multi-line. LetoScript supports both of those, plus {{#}} as well (Perl-style, same as {{//}}), and {{(* *)}} (Delphi-style, same as {{/* */}}), and &#34;block comments&#34;, which begin and end with {{***}} plus a label on its own line. 
+{{
+  // C style comment. One line.
+  // Another line of comment.
+
+  /* C++ style comment.
+   * Multiple line.
+   Anything // can be anywhere;
+   on any line. The closing star-slash
+   can be on the same line or
+   its own line:
+  */
+
+  # Perl-style comment. One line.
+  # Another line of comment.
+[[page]]
+
+  (* Delphi style comment.
+     Works just the same as /* */,
+     and can even enclose them.
+  *)
+
+  *** Explanation
+  This is a block comment. It begins with *** Explanation on the first line,
+  and continues until *** Explanation appears again on its own line.
+  Everything in the block is a comment.
+  *** Explanation
+
+  print &#39;Hello, world.&#39;;  // Legal comment.
+  print /* Also legal. */ &#39;Hello, world.&#39;;
+  #print &#39;Hello, world.&#39;;  # Remove the first # to uncomment.
+}}
+Next: &#60;[lsdoc 101 logic]&#62;
+</article>
+			<article name="Logic" title="LetoScript 101: Logic">Here&#39;s a comparison of an {{if else}} construct in NWScript and LetoScript:
+{{
+  // NWScript:
+  if (num_snakes &#62; 10) {
+    // do something...
+  } else if (num_snakes &#62; 1) {
+    // do something else...
+  } else {
+    // if all else fails...
+  }
+
+  # LetoScript:
+  if ($num_snakes &#62; 10) {
+    # do something...
+  } elsif ($num_snakes &#62; 1) {
+    # do something else...
+  } else {
+    # if all else fails...
+  }
+}}[[page]]
+
+Of course the variables are using {{$}}, but the big difference is that else if has become {{elsif}}.
+
+You can skip the braces for simplified if statements in NWScript. You can accomplish the same in LetoScript by placing {{if}} at the end of the statement (so it reads more like English): 
+{{
+  // NWScript:
+  if (num_snakes &#62; 10) SendMessageToPC(oPC, &#34;Too many snakes!&#34;);
+
+  # LetoScript:
+  print &#39;Too many snakes!&#39; if $num_snakes &#62; 10;
+}}
+The parentheses for the {{if}} statement are optional in this particular case. (When using braces, they&#39;re required.) Also, you can&#39;t write an {{if else}} or {{if elsif}} this way, it&#39;s only a shortcut for one particular condition. You can reverse the condition with {{unless}}:
+{{
+  unless ($num_snakes &#62; 10) {
+    print &#39;We can handle this.&#39;;
+  }
+  print &#39;We can handle this.&#39; unless $num_snakes &#62; 10;
+}}[[page]]
+
+[[b]]-- Truthiness[[/b]]
+
+By the way, a value is only false in LetoScript if it is 0 or an empty string. Because strings and numbers are commutive, the string &#39;0&#39; is false! You can also use the words {{true}} and {{false}} themselves, but it&#39;s generally redundant to compare something against true or false: 
+{{
+  # Instead of:
+  print if $foo == true;
+
+  # Use:
+  print if $foo;
+
+  # Instead of:
+  print if $foo == false;
+
+  # Use:
+  print if !$foo;
+  # Or:
+  print unless $foo;
+}}[[page]]
+
+[[b]]-- Booleans[[/b]]
+
+NWScript uses the two operators {{&#38;&#38;}} (two ampersands) and {{||}} (two pipes) for boolean tests. They work exactly the same in LetoScript. Don&#39;t get confused by the operators {{&#38;}}, {{|}}, {{and}}, {{or}}. The first two perform bitwise operations, which are handy for using binary numbers as &#34;flags&#34;, but are otherwise irrelevant. The second two are functionally equivalent to the {{&#38;&#38;}} {{||}} operators, but with very low &#34;precedence&#34; (see &#60;[lsdoc precedence]&#62;). Literal {{or}} is most often seen in the statement modifier: {{or die $!}}
+{{
+  false [[&#38;&#38;]] true;        # False
+  false || true;        # True
+  14 [[&#38;]] 5;               # Yields 4 (1110 AND 0101)
+  14 | 5;               # Yields 15 (1110 OR 0101)
+
+  # Execute the statement to the left of and;
+  # if successful, execute the statement to the right:
+  %bob = &#39;bob.bic&#39; and pl &#34;Hi, my name is /firstname /lastname.&#34;;
+
+  # Execute the statement to the left of or;
+  # if unsuccessful, execute the statement to the right:
+  %bob = &#39;bob.bic&#39; or die $!;
+}}[[page]]
+
+[[b]]-- Equality[[/b]]
+
+One final consideration is that equality is different for strings and numbers, hence there are different operators (called stringwise) for strings. 
+{{
+  # Numeric:
+  1 == 1                # Values are the same
+  1 != 2                # Values are not the same
+
+  # Stringwise:
+  &#39;foo&#39; eq &#39;foo&#39;        # Strings are the same
+  &#39;foo&#39; ne &#39;bar&#39;        # Strings are not the same
+  &#39;foo&#39; ne &#39;Foo&#39;        # Neither are these, but...
+  &#39;foo&#39; eqi &#39;Foo&#39;       # They&#39;re the same when case-insensitive
+  &#39;foo&#39; nei &#39;bar&#39;       # Strings are not the same, even case-insensitive
+}}
+Next: &#60;[lsdoc 101 flow]&#62;
+</article>
+			<article name="Flow" title="LetoScript 101: Flow">There are basically two kinds of loop in LetoScript: {{for}} and {{while}}. {{for}} loops repeat a set number of times. {{while}} loops continue to repeat so long as some condition remains true. ({{do}} loops aren&#39;t implemented yet.)
+
+In addition to the &#34;classic&#34; style that NWScript uses, three other kinds of {{for}} loop are possible in LetoScript: iterating over a list (an array or a hash), iterating over a List (Field), and iterating over some subset of resources in an open ERF.
+
+The classic, C style {{for}} loop works exactly the same as it does in NWScript, just remember to use {{$}} for your variable:
+{{
+  # C style:
+  for ($i = 0; $i &#60; 10; $i++) {
+    print $i;
+  }
+  # And:
+  for ($i &#60; 10; $i++) { print $i; }
+  # And even:
+  for (; $i &#60; 10 ;) { print $i; $i++; }
+}}[[page]]
+
+Iterating across a list is sometimes called &#34;foreach&#34; in other languages. The syntax is very simple: {{for (@list)}}. {{$_}} is a copy of the current iteration&#39;s value (changing it does not affect the list). You can also declare your own variable to use instead of {{$_}}, so long as you use parentheses. Note that several functions can use {{$_}} as a default argument, including {{print}}:
+{{
+  @list = (&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;);
+
+  # Using $_
+  for (@list) {
+    print; # same as print $_
+  }
+
+  # Using my own variable
+  for $each (@list) {
+    print $each;
+  }
+
+  # Any list is acceptable, not just an array
+  for (vault &#39;c:\NWN\servervault&#39;, Recursive) {
+    pl;
+  }
+}}[[page]]
+
+The syntax is similar for stepping through the child Structs of a List. Instead of {{$_}}, use {{/~}} to access the current Struct in the loop. You can nest these loops and {{/~}} will work correctly at different depths:
+{{
+  for (/LvlStatList) {
+    $level++;
+    pl &#34;Level $level hit points: /~/LvlStatHitDie&#34;;
+  }
+
+  for (/{&#39;Creature List&#39;}) {
+    pl &#34;Checking /~/Tag&#39;s inventory...&#34;;
+    for (/~/ItemList) {
+      pl &#39;Snake skin found!&#39; if /~/Tag eq &#39;DS_I_SNAKESKIN&#39;;
+    }
+  }
+}}
+There&#39;s also a shortcut syntax to &#34;cascade&#34; through a List, useful when the List&#39;s Structs each only have one child - FeatList for example:
+{{
+  for (/FeatList//) {
+    pl; # print the value (Id) of each Feat
+  }
+}}[[page]]
+
+Iterating through an ERF is a feature unique to LetoScript, and frequently used for scripts that need to analyze a module or make global changes that would take hours or days by hand. The syntax makes use of literal {{in}}, which indicates one or more resources in an ERF. See also &#60;[desc erf.list]&#62;.
+{{
+  %mod = &#39;d:\dungeon.mod&#39; or die $!;
+
+  # Loop over all the GIT resources in %mod:
+  for (&#39;*.git&#39; in %mod) {
+
+    # $_ is the name of the current resource
+    pl &#34;Checking area $_...&#34;;
+
+    # Scan the Creature List, and each creature&#39;s ItemList:
+    for (/{&#39;Creature List&#39;}) {
+      pl &#34;Checking /~/Tag&#39;s inventory...&#34;;
+      for (/~/ItemList) {
+        pl &#39;Snake skin found!&#39; if /~/Tag eq &#39;DS_I_SNAKESKIN&#39;;
+      }
+    }
+
+  }
+}}[[page]]
+
+{{for}} can be used as a statement modifier, in the same way {{if}} can. This is more than just a shortcut - the statement is easier to read. This syntax cannot be used for C style loops, but can be used for any of the other three types when the loop contains only a single statement. The parentheses become optional. Here are a few of the examples above, shortened from three lines into one:
+{{
+  # 3 (or 4) lines:
+  for (@list) {
+    print;
+  }
+  # One-liner:
+  print for @list;
+
+  # Another one:
+  pl for vault &#39;c:\NWN\servervault&#39;, Recursive;
+
+  # Another one:
+  pl for /FeatList//;
+}}
+Actually, all of these examples can be shortened further, because {{print}} already performs iteration over its arguments, so {{print for}} is redundant - just use {{print}} (or {{pl}}) followed by the list.
+[[page]]
+
+Statement modifiers cannot be combined, however; that is, {{for}} and {{if}} cannot be used together on the same line. There is one clever way to work around this limitation (knowing it is a prerequisite for the [[b]]One-Liner Master[[/b]] feat), shown in the third example below - see &#60;[lsdoc ternary]&#62;.
+{{
+  # This won&#39;t work:
+  pl &#39;Snake skin found!&#39; if /~/Tag eq &#39;DS_IT_SNAKESKIN&#39; for /ItemList;
+
+  # This works:
+  for (/ItemList) {
+    pl &#39;Snake skin found!&#39; if /~/Tag eq &#39;DS_IT_SNAKESKIN&#39;
+  }
+
+  # An idiomatic masterpiece:
+  /~/Tag eq &#39;DS_IT_SNAKESKIN&#39; ? pl &#39;Snake skin found!&#39; : 0 for /ItemList;
+}}[[page]]
+
+Standard {{while}} loops are syntactically identical to NWScript, and {{while}} can also be used as a statement modifier:
+{{
+  $found = false;
+  $i = 0;
+
+  # Standard:
+  while (!$found [[&#38;&#38;]] $i &#60; 3)
+  {
+    $found = $colors[$i] eq &#39;orange&#39;;
+    $i++;
+  }
+
+  # Shortcut:
+  $found = $colors[$i++] eq &#39;orange&#39; while !$found [[&#38;&#38;]] $i &#60; 4;
+}}
+As in NWScript, take special care when writing {{while}} loops. When executing under NWNX-Leto, an infinite loop in LetoScript could lock up the NWN server.
+
+Next: &#60;[lsdoc 101 subroutines]&#62;
+</article>
+			<article name="Subroutines" title="LetoScript 101: Subroutines">Only recently did this feature emerge in LetoScript, and along with it, several subtle changes to the very syntax of the language itself. Hence, the discussion of subroutines is about more than just writing reusable functions (which you probably won&#39;t need for most short scripts), but also about how the syntax in general works for calling LetoScript&#39;s own methods.
+
+The link between the two is more than just coincidental: LetoScript&#39;s internal definitions for all its functions uses exactly the same syntax and code invoked when you declare or execute your own subroutines. Even the command-mode utility {{syntax}} will recognize subroutines you have defined, and note them as having higher precedence than other modules&#39; methods with the same name. (You could write a subroutine named print and it would obscure {{system.print}}. In the future, there may be a warning produced when you do so.)
+
+Hence the reason why the syntax for declaring a subroutine is somewhat complex: flexibility. You can give your arguments names, default values, make some of them completely optional, and control the sub&#39;s very behavior.
+[[page]]
+
+[[b]]-- Basic use[[/b]]
+
+The simplest way to declare and use a subroutine is by name alone:
+{{
+  sub foo {
+    pl &#39;foo.&#39;;
+  }
+
+  foo;  # prints &#39;foo.&#39; (and a newline)
+}}
+The keyword {{sub}}, followed by its name, and a code block (the curly braces) indicates you&#39;re [[b]]defining[[/b]] your subroutine. The code block is executed any time the sub is invoked.
+
+[[b]]Invocation[[/b]] merely requires using the name of the subroutine just like you would any function. Parantheses aren&#39;t used in the example because they aren&#39;t needed, but we&#39;ll cover the exacting details of when they are and are not required, further down.
+[[page]]
+
+[[b]]-- Arguments (informal method)[[/b]]
+
+When defining a subroutine using this simple method, you haven&#39;t specified how many or what kind of arguments it can receive. It can in fact still be given arguments, and they&#39;re stored in the special-use array {{@_}}:
+{{
+  sub bar {
+    print $_[0] + $_[1] + $_[2];
+  }
+
+  bar 1, 2, 3;  # prints 6
+}}
+Don&#39;t get {{@_}} and {{$_}} confused. In the example above, {{$_[0]}} means the first element in the array {{@_}}. {{$_}} by itself is a different variable, as discussed previously in &#60;[lsdoc 101 flow]&#62;.
+
+Consider what might happen if you only gave two arguments to {{bar}}. The value of {{$_[2]}} would be &#34;undefined&#34;. Addition works on undefined values, though a warning will result. Assuming {{$_[2]}} will be defined is probably not a good idea.
+[[page]]
+
+You could use {{@_.count}} and a {{for}} loop, but a more idiomatic solution is to use {{shift}}. The {{shift}} function removes the first element from a list, and returns that element&#39;s value. It returns {{undef}} if the list is empty.
+
+In a similar vein, using an {{if}} statement (or any boolean test) on an array itself returns false if the list is empty (or undefined), so we can build a very simple {{while}} loop as follows:
+{{
+  sub bar {
+    while (@_) {
+      $i = shift @_;
+      $result += $i;
+    }
+    print $result;
+  }
+
+  bar 2, 3, 4;  # prints 9
+}}[[page]]
+
+Here are two other ways to write the same thing:
+{{
+  # Shorter - more advanced use of LetoScript:
+  sub bar {
+    while (@_) {
+      $i += shift;
+    }
+    print $i;
+  }
+
+  # Shortest - a one-liner of the previous:
+  sub bar {
+    $i += shift while @_;
+    print $i;
+  }
+}}
+Here {{shift}} is being used without any arguments; so it uses {{@_}} as a default argument. Also, no intermediate variable is used - it isn&#39;t really needed, even though the resulting statement may (at first) look a little strange.
+[[page]]
+
+[[b]]-- Arguments (formal method)[[/b]]
+
+Instead of {{@_}}, you can use a more formal definition for your subroutine, which is useful if you find you&#39;re setting up a lot of variables at the beginning of your subroutine using multiple {{shift}} statements.
+
+The formal method also imposes calling requirements on the subroutine - if your sub requires two parameters, trying to call it with one will result in a compile-time error; with three or more results in a warning. (Compile-time means before the script even starts running; so the error is discovered even if your script never actually reaches the erroneous statement.)
+{{
+  sub xyzzy($a, $b) {
+    print $a, $b;
+  }
+
+  xyzzy &#39;foo&#39;, &#39;bar&#39;;   # Prints &#39;foobar&#39;
+  xyzzy &#39;foo&#39;;          # Error!
+  xyzzy 1, 2, 3;        # Prints &#39;12&#39;, with a warning
+}}[[page]]
+
+[[b]]-- Defaults[[/b]]
+
+You can assign default values to your arguments. The argument is no longer required - if it isn&#39;t supplied, it uses its default value. Consequentially, you can&#39;t have arguments without default values after arguments with default values, or the sub has no way of knowing which args the caller is skipping:
+{{
+  sub multithree ($a, $b, $c = 2) {
+    print $a * $b * $c;
+  }
+  multithree 1, 2, 3;   # 6
+  multithree 4, 4;      # 32
+
+  sub multifour ($a, $b, $c = 2, $d = 10) {
+    print $a * $b * $c * $d;
+  }
+  multifour 2, 2;       # 80
+
+  sub oops ($a = 1, $b, $c) {
+    print $a + $b + $c;
+  }
+  # Error! Subroutine not accepted.
+}}[[page]]
+
+[[b]]-- Optionals[[/b]]
+
+You can also make an argument completely optional by separating your arguments into two clauses, using a semicolon. Optional arguments (as opposed to standard arguments) always have a default value ({{undef}} if you don&#39;t assign one), and must be supplied [[b]]by name[[/b]], which is a form of function calling that explicitly states arguments and values in key-value pairs, and can list them in any arbitrary order:
+{{
+  sub plugh ($a, $b, $c = &#39;foo&#39;; $x, $y = 3, $z) {
+    
+  }
+  plugh 1, 2, z =&#62; &#39;quux&#39;;
+}}
+In this example, the arguments {{$a}}, {{$b}} and {{$c}} are standard. {{$c}} has a default value of &#39;foo&#39;. {{$x}}, {{$y}} and {{$z}} are optional. {{$x}} and {{$z}} have {{undef}} as a default value, {{$y}} has 3 as a default value. The caller gave {{$a}} a value of 1 and {{$b}} a value of 2. {{$c}} uses its default value of &#39;foo&#39;. {{$x}} is undefined, {{$y}} is 3, and {{$z}} is &#39;quux&#39;. Note that when arguing by name, the name (key) is not case-sensitive.
+[[page]]
+
+That may seem like a pretty nonsensical example, so consider this actual LetoScript function&#39;s syntax:
+{{
+gff.find
+  $name, $value = &#39;*&#39;, /root = undef;
+  $matchcase = 0, $type, $lang = -1,
+  $strref, $depth = -1, $target = -1, $haschildren,
+  &#38;match
+}}
+The function is {{gff.find}}, which finds one or more Fields matching several possible criteria. The body of those criteria are shown in the extensive list of arguments above.
+
+The standard args are {{$name}}, {{$value}} and {{/root}}. Note that the first two are scalar args, but {{/root}} must be a Field - it won&#39;t accept anything else. The rest of the args are optional. Some of the optionals have default values, but others do not - this makes it possible to distinguish between an arg&#39;s default value, and &#34;unspecified&#34;.
+
+{{$haschildren}}, for instance, will only find Fields with children if true, or Fields without children if false - but will find both if undefined.
+[[page]]
+
+[[b]]-- Rules for arguments[[/b]]
+
+There are three additional considerations to bear in mind about arguments:
+
+[[b]]Standard args don&#39;t require naming, but optionals do.[[/b]] In the syntax for {{gff.find}}, {{/root}} is a standard arg, with a default value of {{undef}}. Why use a standard arg with a default value of {{undef}}? Because the caller can list its standard arguments without names; or in other words, optionals must be argued by name:
+{{
+  pl find &#39;Feat&#39;, 101, /LvlStatList;
+}}
+The three standard args are simply given in order, and no optionals are used. If {{/root}} were an optional, it would need to be argued by name:
+{{
+  pl find &#39;Feat&#39;, 101, root =&#62; /LvlStatList;
+}}
+To be precise: A standard can be argued by name or by value. An optional must be argued by name. Arguing by value requires arguments be in order.
+[[page]]
+
+[[b]]Default values must be constant.[[/b]] You cannot declare a sub with an argument that has a default value which is not a constant (usually a number or a single-quoted string). This includes variables, strings which require interpolation, or any statement which cannot be evaluated immediately at compile-time.
+
+If you need this behavior, use {{undef}} and insert the logic in the subroutine&#39;s body instead:
+{{
+  # This won&#39;t work:
+  sub wrong ($a, $b = $a) {
+    print $a * $b;
+  }
+
+  # Do this instead:
+  sub right ($a, $b = undef) {
+    $b = $a unless defined $b;
+    print $a * $b;
+  }
+}}[[page]]
+
+[[b]]Boolean optionals are true when argued by key.[[/b]] What&#39;s this, arguing by name, value, and now &#34;key&#34;? Arguing by key is actually just arguing by name, but without using {{=&#62;}} to make a key-value pair. This &#34;syntactic sugar&#34; makes boolean optionals (an optional argument treated as either true or false) easier to use:
+{{
+  pl find &#39;*name&#39;, &#39;Bob&#39;, MatchCase;
+}}
+Here {{gff.find}} is called with its standard arguments {{$name}} and {{$value}}, and the optional argument {{$matchcase}}. It&#39;s the same as saying:
+{{
+  pl find &#39;*name&#39;, &#39;Bob&#39;, MatchCase =&#62; true;
+}}
+For another example, consider {{bic.vault}}. It has an optional arg {{$nofullpaths}}. The default behavior of {{vault}} is to include full paths in its results. Hence, the optional is named to indicate what its effect will be when arguing that optional by key. The same for its optional {{$recursive}}, which reverses the default behavior of searching only in the directory specified:
+{{
+  pl vault &#39;c:\NWN\servervault&#39;, NoFullPaths, Recursive;
+}}
+[[page]]
+Still under construction...
+
+Next: &#60;[lsdoc 101 functions]&#62;
+</article>
+			<article name="Functions" title="LetoScript 101: Functions">By now you should have a fairly strong grasp of the basic language itself. The real power in LetoScript is in its modules (libraries) and their functions: with them you can add new Fields to a GFF, list the resources in an ERF, look up a StringRef in a TLK, even look for the newest BIC file in a servervault folder - and quite a bit more, too.
+
+Individual articles are available for every LetoScript function. To see a list, use the &#60;[list]&#62; utility. To get a basic description of a function, use &#60;[desc]&#62; (or &#60;[describe]&#62;, or &#60;[explain]&#62;) and its full name, such as: &#60;[desc gff.add]&#62;. You can also get an overview of each module (try just &#60;[desc]&#62; or &#60;[desc gff]&#62;).
+
+Then read a few examples and try playing with the function on your own. &#60;[example gff.add]&#62; picks up where &#60;[desc gff.add]&#62; leaves off.
+
+After you&#39;ve gained a few levels in your [[b]]Champion of LetoScript[[/b]] prestige class, you may need a refresher on just the syntax of some function. For that, use &#60;[syntax]&#62;: &#60;[syntax gff.add]&#62; (&#60;[syntax add]&#62; works too), &#60;[syntax print]&#62;, etc.
+</article>
+		</section>
+		<article name="Attributes" title="LetoScript: Attributes">The purpose of attributes is to reveal some information about a variable. There are different attributes for different types of variables. Subroutines also have &#34;attributes&#34;, but there it means something completely different. See &#60;[lsdoc 101 subroutines]&#62;.
+
+[[b]]Scalars[[/b]] have as attributes:
+  length                The length of a string
+  type                  NUMBER or STRING
+  typex                 For debugging internal variant types
+  char                  Shortcut for &#60;[substr]&#62;; assignable
+
+[[b]]Lists[[/b]] have as attributes:
+  count                 How many elements are in the list
+  first                 The index or key of the first element
+  last                  The index or key of the last element
+  type                  ARRAY or HASH
+[[page]]
+
+[[b]]Fields[[/b]] have as attributes:
+  langs                 (LocString) List of assigned languages
+  byte[n]               (Void) nth byte of data; assignable
+  count                 (LocString) Number of assigned languages
+                        (List, Struct) Number of children
+  depth                 How many parents the Field has
+  firstchild            Path of first child Field
+  haschildren           Verifies the Field has children
+  haslangs              (LocString) Verifies any languages are assigned
+  hasnext               Verifies there is a next Field (after this)
+  hasnextsib            Verifies there is a next sibling (after this)
+  hasparent             Verifies the Field has a parent
+  hasprevious           Verifies there is a previous Field (before this)
+  hasprevsib            Verifies there is a previous sibling (before this)
+  id                    (Struct) The Struct&#39;s id / value; assignable
+  index                 Field index in GFF (for debugging)
+  lang[n]               (LocString) language n&#39;s value; assignable
+  langs                 (LocString) List of assigned languages
+  lastchild             Path of last child Field
+  length                (Void) Length in bytes; assignable
+  name                  Field&#39;s name; assignable
+  names                 (Struct) List of the names of child Fields
+  next                  Path of next Field (after this)
+  nextsibling           Path of next sibling (after this)
+  parent                Path of parent
+  parentindex           Parent index in GFF (for debugging)
+  path                  Path of this Field
+  previous              Path of previous Field (before this)
+  prevsibling           Path of previous sibling (before this)
+  strref                (LocString) StringRef (or NO_STRREF); assignable
+  type                  Field&#39;s type code (0-15); assignable
+  typestr               Field&#39;s type in plain text (e.g. &#34;Byte&#34;); assignable
+  value                 Field&#39;s value (usually redundant); assignable
+[[page]]
+
+[[b]]Files[[/b]] have as attributes:
+  filename              String used to open the file
+  count                 (ERF) Number of resources
+                        (GFF) Number of Fields in root Struct
+  signature             8-byte header, e.g. &#34;GFF V3.2&#34;; assignable
+  header                Same as signature
+  sig                   First four bytes of header; non-assignable
+  ver                   Second four bytes of header; non-assignable
+</article>
+		<article name="Hashes" title="LetoScript: Hashes">A hash (also called an associative array, and in some languages a &#34;dictionary&#34;) is a list variable that uses words (called &#34;keys&#34;) instead of numeric indices. Declaration of a hash uses {{=&#62;}} between keys and values, and commas to separate these pairs:
+{{
+  # Declaring an array:
+  @weapons = (&#39;longsword&#39;, &#39;mace&#39;, &#39;crossbow&#39;);
+
+  # Declaring a hash:
+  @town = (name =&#62; &#39;Red Cove&#39;, population =&#62; 98, location =&#62; &#39;Sword Coast&#39;);  
+}}
+Note that keys do not require quotation (unless they contain spaces or other reserved characters), and values can be of any type (the same is true of arrays). Accessing and assigning to hash elements uses standard list syntax:
+{{
+  print $town[&#39;name&#39;];
+  $town[&#39;population&#39;] = 97;
+}}
+Here the quotes are necessary (or a warning results), and assignment uses {{=}}, not {{=&#62;}}.
+[[page]]
+
+Two special functions exist for hashes: {{keys}} and {{values}}. The {{keys}} function produces a list (an array) of only a hash&#39;s keys, and {{values}} produces only the hash&#39;s values.
+
+Looping over a hash outputs its keys and values, though order is not guaranteed. (Order is the function of arrays, identification is the function of hashes.)
+{{
+  # One way to output a hash:
+  for (keys @town) {
+    print $_, $town[$_];
+  }
+
+  # Simpler:
+  print $_, $town[$_] for keys @town;
+
+  # Simpler:
+  print for @town;
+
+  # Simplest:
+  print @town;
+}}
+</article>
+		<article name="Precedence" title="LetoScript: Operator precedence">Under construction.
+</article>
+		<article name="Strings" title="LetoScript: Strings">Strings in LetoScript can be presented, stored, output, and operated upon in a variety of ways.
+
+[[b]]Presentation[[/b]] of strings is done with single- or double-quotes, or the {{q}} and {{qq}} functions, which simulate the same, respectively.
+
+[[b]]Storage[[/b]] of strings is done with scalars, represented by the dollar-sign symbol {{$}}. (Numbers can also be stored with scalars, so the two terms are not synonymous.)
+
+[[b]]Output[[/b]] of strings is done with one of the {{system}} functions: {{print}}, {{printf}}, or {{printlist}} ({{pl}}).
+
+[[b]]Operators[[/b]] specific to strings are: {{plus}}, {{plussp}}, {{.length}}, {{.char}}, and the {{system}} functions {{chr}}, {{lc}}, {{length}}, {{subst}}, {{substr}}, and {{uc}}.
+[[page]]
+
+[[b]]-- Presentation[[/b]]
+
+A string is presented &#34;in plain text&#34; using either single-quotes or double-quotes. Each has a distinct purpose, and use of one or the other should be meaningful, not arbitrary. (Don&#39;t always use single-quotes or always use double-quotes.)
+
+Single-quotes make simple the presentation of a variety of characters. Almost all characters in a single-quoted string will be interpreted by LetoScript as exactly what you&#39;ve written. This is useful if a string has numerous literal slashes or backslashes.
+
+Double-quotes make simple the presentation of a variety of data and non-visual elements. Interpolation is the process of LetoScript scanning the string for codes that signal the presence of variables and escaped characters. This is useful as an elegant alternative to lengthy concatenation.
+[[page]]
+
+[[b]]-- Escaped characters[[/b]]
+
+Remainder under construction.
+</article>
+		<article name="Ternary" title="LetoScript: Ternary if-else">Under construction.
+</article>
+	</section>
+	<section name="Examples" title="EXAMPLES">
+		<index header="For an example of any function, use &#39;example &#39; and its full name. E.g., &#39;example gff.add&#39;">
+			<link name="GFF.add" node="gff.add" aliases="add" visible="false"/>
+		</index>
+		<article name="gff.add" title="Examples: gff.add">Under construction.
+</article>
+	</section>
+	<section name="Info" title="INFO">
+		<index header="These are short articles that deal less with code and more with information. To read an article, type &#39;info &#39; and its name. E.g., &#39;info gff&#39;">
+			<link name="command" desc="Command mode utilities" node="Command"/>
+			<link name="command-mode" desc="" visible="false" node="Command-Mode"/>
+			<link name="erf" desc="The ZIP files of NWN" node="ERF"/>
+			<link name="fields" desc="Several articles about Fields" node="Fields"/>
+			<link name="fpt" desc="Using BioWare DB files for dynamic content" node="FPT"/>
+			<link name="gff" desc="NWN&#39;s Generic File Format" node="GFF"/>
+			<link name="nwnx" desc="The Neverwinter Nights eXtender" node="NWNX"/>
+			<link name="scriptlet" desc="Moneo&#39;s scriptlet mode" node="Scriptlet"/>
+			<link name="set-prop" desc="" visible="false" node="Set-Prop"/>
+			<link name="shell" desc="Moneo&#39;s shell mode" node="Shell"/>
+		</index>
+		<section name="Command" title="COMMANDS">
+			<index header="Command mode utilities:" footer="\nDetails available, e.g. &#39;info command set&#39;\n">
+				<link name="define" desc="Query LetoScript&#39;s builtin syntax parser" node="Define"/>
+				<link name="disable" desc="Administratively disable a module or method" node="Disable"/>
+				<link name="enable" desc="Re-enable a disabled module or method (or all)" node="Enable"/>
+				<link name="list" desc="List active modules and methods / constants in modules" node="List"/>
+				<link name="loadhelp" desc="Reload the helpfile, or specify a new one" node="LoadHelp"/>
+				<link name="loadsettings" desc="Load or reload a personal settings file" node="LoadHelp"/>
+				<link name="savesettings" desc="Save your personal settings" node="LoadHelp"/>
+				<link name="set" desc="Control Moneo&#39;s look and feel" node="Set"/>
+			</index>
+			<article name="Define" title="Info: DEFINE command"/>
+			<article name="Disable" title="Info: DISABLE command"/>
+			<article name="Enable" title="Info: ENABLE command"/>
+			<article name="List" title="Info: LIST command"/>
+			<article name="LoadHelp" title="Info: LOADHELP command"/>
+			<article name="Set" title="Info: SET command">Controls Moneo&#39;s appearance and behavior. For instance, you can turn on colors to make reading easier, or turn off topic banners in the help system to fit more text onto the screen.
+
+Use &#39;set&#39; by itself to see all of the properties that can be set, and their current values. You can also check the value of a single property with &#39;set prop&#39; (where prop is the name of the property), or change its value with &#39;set prop value&#39;.
+
+See also &#39;info set-prop&#39;.
+			</article>
+			<section name="Set-Prop" title="Info: SET properties">
+				<index header="" footer="\nDetails available, e.g. &#39;info set-prop shellcolors&#39;.\n"/>
+			</section>
+		</section>
+		<article name="Command-Mode" title="Info: Command Mode">When Moneo runs interactively (see &#39;info shell&#39;), you can switch between several modes of execution. Shell mode is the default. The two other modes are command mode and scriptlet mode.
+
+Command mode has two purposes. It can be used as a help system, to teach yourself the basics of LetoScript. It can also be used to control Moneo&#39;s execution. Command mode is invoked using Ctrl+] (hold down Ctrl and press the right square bracket). The same key sequence exits command mode, as well as &#39;exit&#39;.
+
+To access the help system when in command mode, type &#39;help&#39; or &#39;?&#39;. A list of the builtin commands that control Moneo can be seen using &#39;commands&#39;.
+</article>
+		<article name="ERF" title="Info: Encapsulated Resource File">Under construction.
+</article>
+		<section name="Fields" title="FIELDS">
+			<index header="Everything you ever wanted to know about Fields, but were afraid to ask:" footer="\nDetails available, e.g. &#39;info fields types&#39;\n">
+				<link name="about" desc="What are Fields?" node="About"/>
+				<link name="types" desc="The 16 Field types" node="Types"/>
+			</index>
+			<article name="About" title="Fields: About">Under construction.
+</article>
+			<article name="Types" title="Fields: Types">Under construction.
+</article>
+		</section>
+		<article name="FPT" title="Info: FPT">Under construction.
+</article>
+		<article name="GFF" title="Info: Generic File Format">Under construction.
+</article>
+		<article name="NWNX" title="Info: NWNX">Under construction.
+</article>
+		<article name="Scriptlet" title="Info: Scriptlet Mode">Scriptlet mode lets you write longer scripts while in shell mode, simulating the execution of an entire script. This is useful if you want to paste-in a script from a file, or you want to write a single statement on multiple lines.
+
+To invoke scriplet mode, use Ctrl+[ (control and left square bracket) while in shell mode. The prompt will change to &#39;Moneo:&#39; and statement execution will no longer be interactive. To stop scripting and evaluate everything you&#39;ve entered, use Ctrl+[ again to return to shell mode.
+
+Remember to use semicolons to separate your statements!
+</article>
+		<section name="Set-Prop"/>
+		<article name="Shell" title="Info: Shell Mode">Under construction.
+</article>
+	</section>
+	<section name="WhatsNew" title="WHAT&#39;S NEW">
+		<index header="Select a build for (brief) notes on what was fixed, changed, and added:" footer="\nDetails available, e.g. &#39;whatsnew 27&#39;\n">
+			<link name="27" node="27" desc="Big changes after two broken, disappointing builds"/>
+		</index>
+		<article name="27" title="What&#39;s new in build 27">[[b]] Fixed:[[/b]]
+Many syntax-level problems were resolved, especially for variables. A crash bug in for-loops over ERF resources was finally resolved.
+
+[[b]] Added:[[/b]]
+Loads of additions: {{.names}} attribute, {{plus}} ({{et}}), {{minus}}, {{plussp}} ({{y}}), {{fileinfo}}, {{forcedirectories}}, {{system}} (execute shell commands), and Moneo&#39;s command mode (including the helpsys you&#39;re reading now). {{gff.add}} can now add Structs, and the syntax {{/^/}} (parent of context) supplements {{/~/}} (child of context).
+
+[[b]] Changed:[[/b]]
+Warnings are now enabled by default. The bind operator {{=~}} was changed to literal {{in}}, and completely deprecates {{%erf[&#39;resource&#39;]}} syntax. {{+}} is much more strict about numeric addition. {{bic.vault}} option {{FullPaths}} renamed to {{NoFullPaths}}. {{filesys}} and {{system.system}} disabled by default.
+</article>
+	</section>
+</LetoScriptHelp>

@@ -1,0 +1,15 @@
+{TODO 5 : ADD: Access to GffFile's fast loading routines}
+{TODO 4 : CHANGE: "Use of uninitialized item" for uninit, not just undef}
+{TODO 4 : ADD: Warning: $name used only once, possible typo}
+
+
+{TODO 4 : BUG: Preemptive syntax checking. E.g.: my 5 if $foo}
+{TODO 4 : ADD: qx}
+
+
+{TODO 3 : ADD: PHASH (proxy hash), hash with user-definable read / write routines}
+{TODO 2 : CHANGE: Consolidate TLetoScriptValue, TGffField (and generic Variant behavior)}
+{TODO 5 -cAlert : ! Always rebuild LetoScript.dll upon new LetoScript build release !}
+{TODO 3 : ADD: Dealing with STDIN, STDERR}
+{TODO 3 : ADD: Generic access to BIF, KEY, XML}
+{TODO 4 : BUG: Catch EFOpenError whenever .LoadFromFile! (in-progress fix)}
